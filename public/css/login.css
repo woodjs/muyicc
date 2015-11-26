@@ -1,0 +1,42 @@
+.box-login {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.bg-shade {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100; }
+
+.box-login {
+  font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
+  width: 440px;
+  background: #fff;
+  color: #333;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-left: -220px;
+  z-index: 105;
+  padding: 20px 50px; }
+  .box-login ::-webkit-selection {
+    background: #eee;
+    color: #444; }
+  .box-login ::-moz-selection {
+    background: #eee;
+    color: #444; }
+  .box-login ::selection {
+    background: #eee;
+    color: #444; }
+  .box-login h3 {
+    font-size: 30px;
+    margin: 0;
+    line-height: 40px; }
+
+/*# sourceMappingURL=login.css.map */
