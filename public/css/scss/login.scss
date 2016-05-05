@@ -6,31 +6,32 @@ $bdColor: #ddd;
 $bgColor: #f7f7f7;
 $themeFontColor: #333;
 
-.bg-shade{
-  position:fixed;
-  background: rgba(0,0,0,0.6);
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:100;
+.bg-shade {
+ position: fixed;
+ background: rgba(0, 0, 0, 0.6);
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ z-index: 100;
 }
-.box-login{
-  @extend %boxSizing;
-  @include selection(#eee, #444);
-  font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
-  width:440px;
-  background: #fff;
-  color: $color;
-  position: fixed;
-  top:0;
-  left:50%;
-  margin-left:-220px;
-  z-index:105;
-  padding:20px 50px;
-  h3{
-    font-size:30px;
-    margin:0;
-    line-height: 40px;
-  }
+
+.box-login {
+ @extend %boxSizing;
+ @include selection(#eee, #444);
+ font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
+ width: 440px;
+ background: #fff;
+ color: $color;
+ position: fixed;
+ top: 0;
+ left: 50%;
+ margin-left: -220px;
+ z-index: 105;
+ padding: 20px 50px;
+ h3 {
+  font-size: 30px;
+  margin: 0;
+  line-height: 40px;
+ }
 }
