@@ -1,4 +1,37 @@
 @import "_base";
 
+body{
+ padding:0;
+ margin: 0;
+}
 
+body{
+ @include boxSizing(border-box);
+ font-size:14px;
+ min-width:980px;
+ font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
+}
 
+ul,dl,ol{
+ list-style: none;
+}
+
+a{
+ text-decoration: none;
+}
+
+.block-top-func-line{
+ height:45px;
+ line-height:44px;
+ border-bottom: 1px solid #e5e5e5;
+ background: #f5f5f5;
+ .logo{
+  display: inline-block;
+  font-weight:bold;
+  padding:0 10px;
+  @include setHeightGroup(44px);
+  a{
+   color:#333;
+  }
+ }
+}
