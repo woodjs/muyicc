@@ -32,8 +32,12 @@ a{
   font-weight:bold;
   padding:0 10px;
   @include setHeightGroup(44px);
+  float:left;
   a{
    color:#333;
   }
+ }
+ .site-intro{
+  float:left;
  }
 }
