@@ -15,6 +15,7 @@
 - 前端
   - jQuery
   - require.js
+  - sass
 - 后端
   - node.js
   - redis
