@@ -1,9 +1,8 @@
 .box-login {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 .bg-shade {
   position: fixed;
@@ -12,7 +11,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100; }
+  z-index: 100;
+}
 
 .box-login {
   font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
@@ -24,19 +24,20 @@
   left: 50%;
   margin-left: -220px;
   z-index: 105;
-  padding: 20px 50px; }
-  .box-login ::-webkit-selection {
-    background: #eee;
-    color: #444; }
-  .box-login ::-moz-selection {
-    background: #eee;
-    color: #444; }
-  .box-login ::selection {
-    background: #eee;
-    color: #444; }
-  .box-login h3 {
-    font-size: 30px;
-    margin: 0;
-    line-height: 40px; }
+  padding: 20px 50px;
+}
+.box-login ::-moz-selection {
+  background: #eee;
+  color: #444;
+}
+.box-login ::selection {
+  background: #eee;
+  color: #444;
+}
+.box-login h3 {
+  font-size: 30px;
+  margin: 0;
+  line-height: 40px;
+}
 
 /*# sourceMappingURL=login.css.map */

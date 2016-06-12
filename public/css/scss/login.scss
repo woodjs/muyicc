@@ -17,7 +17,7 @@ $themeFontColor: #333;
 }
 
 .box-login {
- @extend %boxSizing;
+ @extend %borderBox;
  @include selection(#eee, #444);
  font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
  width: 440px;

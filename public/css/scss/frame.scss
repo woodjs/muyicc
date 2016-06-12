@@ -19,7 +19,14 @@ ul,dl,ol{
 
 a{
  text-decoration: none;
+}
 
+input,textarea{
+ outline: none;
+}
+
+.btn {
+ cursor:pointer;
 }
 
 .block-top-func-line{
@@ -39,5 +46,23 @@ a{
  }
  .site-intro{
   float:left;
+ }
+ .search-input-box{
+  float: left;
+  .btn-search{
+   display:inline-block;
+   width: 26px;
+   color: red;
+   @include setHeightGroup(26px);
+  }
+  .search-select{
+   float:left;
+  }
+  input{
+   @include setHeightGroup(26px);
+   padding:0 5px;
+   width: 230px;
+   font-size:14px;
+  }
  }
 }

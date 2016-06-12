@@ -3,59 +3,60 @@
  line-height: $height;
 }
 
-@mixin transition($prop...) {
- -webkit-transition: $prop;
- -ms-transition: $prop;
- -moz-transition: $prop;
- -o-transition: $prop;
- transition: $prop;
-}
-
-@mixin transform($prop...) {
- -webkit-transform: $prop;
- -ms-transform: $prop;
- -moz-transform: $prop;
- -o-transform: $prop;
- transform: $prop;
-}
-
 @mixin boxShadow($prop...) {
  -webkit-box-shadow: $prop;
- -ms-box-shadow: $prop;
  -moz-box-shadow: $prop;
- -o-box-shadow: $prop;
  box-shadow: $prop;
 }
 
 @mixin boxSizing($prop) {
  -webkit-box-sizing: $prop;
- -ms-box-sizing: $prop;
  -moz-box-sizing: $prop;
- -o-box-sizing: $prop;
  box-sizing: $prop;
 }
 
 @mixin opacity($prop) {
  opacity: $prop;
- filter: alpha(opacity=$prop * 100);
+}
+
+@mixin transition($prop...) { // ie10+
+ -webkit-transition: $prop;
+ -moz-transition: $prop;
+ transition: $prop;
+}
+
+@mixin transform($prop...) {
+ -webkit-transform: $prop;
+ -moz-transform: $prop;
+ -ms-transform: $prop; // ie9
+ transform: $prop;
 }
 
 @mixin placeholderColor($color) {
- :-moz-placeholder { //Mozilla Firefox 4 to 18
+ ::-webkit-input-placeholder {
   color: $color;
  }
- ::-moz-placeholder { //Mozilla Firefox 19+
+ ::-moz-placeholder {
   color: $color;
  }
- input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  color: $color;
- }
- input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+ :-ms-input-placeholder {
   color: $color;
  }
 }
 
-@mixin createAnimation($name, $duration: 1s, $func: ease-in-out, $delay: 0, $count: infinite, $direction: normal, $state: running) {
+@mixin selection($bgColor, $color) {
+ ::-moz-selection {
+  background: $bgColor;
+  color: $color;
+ }
+ ::selection {
+  background: $bgColor;
+  color: $color;
+ }
+}
+
+$prefixList: '-webkit-' '-moz-' '';
+@mixin createAnimation($name, $duration: 1s, $func: ease-in-out, $delay: 0, $count: infinite, $direction: normal, $state: running, $mode: none) { // ie10+
  @each $prefix in $prefixList {
   #{$prefix}animation-name: $name;
   #{$prefix}animation-duration: $duration;
@@ -64,20 +65,15 @@
   #{$prefix}animation-iteration-count: $count;
   #{$prefix}animation-direction: $direction;
   #{$prefix}animation-play-state: $state;
+  #{$prefix}animation-fill-mode: $mode;
  }
 }
 
-@mixin createKeyframes($name) {
+@mixin createKeyframes($name) { // ie10+
  @-webkit-keyframes #{$name} {
   @content;
  }
- @-ms-keyframes #{$name} {
-  @content;
- }
  @-moz-keyframes #{$name} {
-  @content;
- }
- @-o-keyframes #{$name} {
   @content;
  }
  @keyframes #{$name} {
@@ -91,26 +87,8 @@
  text-overflow: ellipsis;
 }
 
-%boxSizing {
+%borderBox {
  -webkit-box-sizing: border-box;
  -moz-box-sizing: border-box;
- -ms-box-sizing: border-box;
- -o-box-sizing: border-box;
  box-sizing: border-box;
 }
-
-@mixin selection($bgColor, $color) {
- ::-webkit-selection {
-  background: $bgColor;
-  color: $color;
- }
- ::-moz-selection {
-  background: $bgColor;
-  color: $color;
- }
- ::selection {
-  background: $bgColor;
-  color: $color;
- }
-}
-
