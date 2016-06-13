@@ -17,6 +17,7 @@
 
 @mixin opacity($prop) {
  opacity: $prop;
+ filter: alpha(opacity = $prop * 100 );
 }
 
 @mixin transition($prop...) { // ie10+
