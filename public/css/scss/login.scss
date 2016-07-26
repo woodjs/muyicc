@@ -1,10 +1,5 @@
-@import "_base";
-
-$fontSize: 14px;
-$color: #333;
-$bdColor: #ddd;
-$bgColor: #f7f7f7;
-$themeFontColor: #333;
+@import "./core/_base";
+@import "./core/_config";
 
 .bg-shade {
  position: fixed;
@@ -22,7 +17,7 @@ $themeFontColor: #333;
  font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
  width: 440px;
  background: #fff;
- color: $color;
+ color: $fontColor;
  position: fixed;
  top: 0;
  left: 50%;

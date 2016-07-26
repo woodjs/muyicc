@@ -15,6 +15,12 @@
  box-sizing: $prop;
 }
 
+@mixin borderRadius($prop) {
+ -webkit-border-radius: $prop;
+ -moz-border-radius: $prop;
+ border-radius: $prop;
+}
+
 @mixin opacity($prop) {
  opacity: $prop;
  filter: alpha(opacity = $prop * 100 );
@@ -33,15 +39,18 @@
  transform: $prop;
 }
 
-@mixin placeholderColor($color) {
+@mixin placeholderColor($color, $fontSize: 12px) {
  ::-webkit-input-placeholder {
   color: $color;
+  font-size: $fontSize;
  }
  ::-moz-placeholder {
   color: $color;
+  font-size: $fontSize;
  }
  :-ms-input-placeholder {
   color: $color;
+  font-size: $fontSize;
  }
 }
 

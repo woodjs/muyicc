@@ -1,0 +1,112 @@
+@import "./core/base";
+@import "./core/config";
+
+.block-comment{
+ width:100%;
+ .comment-list{
+  display: block;
+  li{
+   margin-bottom:5px;
+  }
+ }
+ .comment-list-sub{
+  padding-top:5px;
+ }
+ .comment-item{
+  font-size:14px;
+  padding: 0 0 0 40px;
+  position: relative;
+  .avatar{
+   position: absolute;
+   left:0;
+   top:0;
+   img{
+    display: block;
+    width:30px;
+    height: 50%;
+    border-radius: 50%;
+   }
+  }
+  .comment-content{
+   line-height:1.6;
+   & > a{
+    margin: 0 2px;
+   }
+   .comment-options{
+    font-size:12px;
+    margin-top:2px;
+    line-height:1.6;
+    color:$lighterFontColor;
+    div{
+     float: right;
+    }
+    .btn{
+     padding: 0 2px;
+     margin: 0 0 0 5px;
+     color: #1e50a2;
+     &:hover{
+      text-decoration: underline;
+     }
+    }
+    .btn-agree{
+     &:hover{
+      color: #ba2636;
+     }
+     em{
+      color: #ba2636;
+     }
+    }
+    .btn-disagree{
+     &:hover{
+      color:#080;
+     }
+     em{
+      color:#080;
+     }
+    }
+    em{
+     font-style:normal;
+     margin: 0 0 0 4px;
+    }
+    i{
+     color: $themeColor;
+     margin-right:3px;
+    }
+   }
+  }
+ }
+ .box-comment-input{
+  margin-top:5px;
+  width:100%;
+  .comment-input{
+   @include boxShadow(0 0 8px rgba(0,0,0,0.1) inset);
+   border:1px solid $bdColor;
+   padding:6px 8px;
+   font-size:14px;
+   line-height:20px;
+   min-height:60px;
+   resize:vertical;
+   display: block;
+   width: 100%;
+   &:focus{
+    outline: none;
+   }
+  }
+  .comment-tool{
+   overflow: hidden;
+   margin-top:5px;
+   .btn-reply{
+    font-size:14px;
+    line-height: 30px;
+    padding:0 20px;
+    color:#fff;
+    background: $themeColor;
+    float:right;
+    @include transition(all .3s ease-in-out);
+    &:hover{
+     background: $darkerThemeColor;
+    }
+   }
+  }
+ }
+}
