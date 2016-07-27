@@ -1,7 +1,22 @@
-var superModel = {};
+"use strict";
 
-superModel.test = function () {
+function SuperModel() {
 
-};
+  this.create = function () {
+    console.log('super create!');
+  };
 
-module.exports = superModel;
+  this.read = function () {
+    console.log('super read!');
+  };
+
+  this.update = function () {
+    console.log('super update!');
+  };
+
+  this.delete = function () {
+    console.log('super delete!');
+  };
+}
+
+module.exports = SuperModel;
