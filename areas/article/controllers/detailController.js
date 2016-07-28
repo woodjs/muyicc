@@ -1,5 +1,6 @@
 "use strict";
 
+let co = require('co');
 let gu = require('guthrie-js');
 let superController = require('../../../common/superController');
 let ArticleModel = require('../../../models/article/ArticleModel');
@@ -10,9 +11,7 @@ detailController.actions = {
     GET: function* (req, res) {
       let article = new ArticleModel();
 
-      res.render('article/index', {
-        data: yield [article.create(), article.read(), article.update(), article.delete()]
-      });
+      res.render('article/index');
     }
   }
 

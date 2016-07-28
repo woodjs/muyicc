@@ -1,43 +1,36 @@
 "use strict";
+let doRequest = require('../../core/doRequest');
+let config = require('../../config');
+let defaultOptions = {
+  server: null,
+  method: 'GET',
+  contentType: 'application/json'
+};
 
-function SuperModel() {
-  var self = this;
+function SuperModel(options) {
+  let self = this;
+  let defaultOptions = Object.assign(defaultOptions, options);
 
-  this.create = function () {
+  this.get = function (opts) {
+
+    let tempOpts = Object.assign(defaultOptions, opts);
+
     return new Promise(function (resolve, reject) {
-      setTimeout(function () {
-        console.log('super create!');
-        resolve('create');
-      }, 10);
-    })
-  };
-
-  this.read = function () {
-    return new Promise(function (resolve, reject) {
-      setTimeout(function () {
-        console.log('super read!');
-        resolve('read');
-      }, 10);
+     execute(tempOpts, resolve, reject);
     });
   };
 
-  this.update = function () {
-    return new Promise(function (resolve, reject) {
-      setTimeout(function () {
-        console.log('super update!');
-        resolve('update');
-      }, 10);
-    });
-  };
+}
 
-  this.delete = function () {
-    return new Promise(function (resolve, reject) {
-      setTimeout(function () {
-        console.log('super delete!');
-        resolve('delete');
-      }, 10);
-    });
-  };
+function execute(opts, resolve, reject) {
+  doRequest(opts, function (response, body) {
+    if (opts.res) {
+      resolve(response);
+    } else {
+      res.status(response && response.statusCode || 200);
+      resolve(body, response)
+    }
+  }, reject);
 }
 
 

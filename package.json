@@ -23,6 +23,7 @@
     "morgan": "~1.6.1",
     "mysql": "^2.11.1",
     "redis": "^2.6.2",
+    "request": "^2.74.0",
     "serve-favicon": "~2.3.0"
   }
 }

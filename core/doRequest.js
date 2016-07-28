@@ -8,7 +8,7 @@ if (env === 'test') {
   request = request.defaults({'proxy': 'http://navigator.servision.com.cn:8888'});
 }
 
-function doRequest(opts, callback) {
+function doRequest(opts, callback, reject) {
 
   if (!opts.server && !opts.url) {
     return;
@@ -73,6 +73,7 @@ function doRequest(opts, callback) {
       request(multipartOptions)
         .on('error', function (err) {
           err.publish();
+          reject && reject(err);
           return opts.res.send({
             success: false,
             message: '后端服务连接错误！'
@@ -82,7 +83,7 @@ function doRequest(opts, callback) {
 
     } else {
 
-      request(multipartOptions, createResponseHandle(callback));
+      request(multipartOptions, createResponseHandle(callback, reject));
 
     }
   } else {
@@ -105,6 +106,7 @@ function doRequest(opts, callback) {
       request(normalOptions)
         .on('error', function (err) {
           err.publish();
+          reject && reject(err);
           return opts.res.send({
             success: false,
             message: '后端服务连接错误！'
@@ -114,7 +116,7 @@ function doRequest(opts, callback) {
 
     } else {
 
-      request(normalOptions, createResponseHandle(callback));
+      request(normalOptions, createResponseHandle(callback, reject));
 
     }
   }
@@ -126,12 +128,13 @@ function createResponseObj(res, callback) {
 
 }
 
-function createResponseHandle(callback) {
+function createResponseHandle(callback, reject) {
 
   return function (err, res, body) {
 
     if (err) {
       err.publish();
+      reject && reject(err);
       return callback(res, {
         success: false,
         message: '后端服务错误！'
