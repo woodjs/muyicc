@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var request = require('request');
+var urlencode = require('urlencode');
 var env = process.env.NODE_ENV || 'development';
 
 if (env === 'test') {
@@ -14,23 +15,30 @@ function doRequest(opts, callback, reject) {
     return;
   }
 
+  var req = opts.req;
   var options = {
     host: opts.server && opts.server.host,
-    port: (opts.server && opts.server.port) || '',
+    port: opts.server && opts.server.port,
     requestPrefix: (opts.server && opts.server.requestPrefix) || '',
     path: opts.path,
     method: opts.method || 'GET'
   };
 
-  var url = opts.url || 'http://' + options.host + (options.port ? ':' + options.port : '') + options.requestPrefix + options.path;
+  var protocol = opts.server && opts.server.protocol ? opts.server.protocol : 'http';
+
+  var url = opts.url || protocol + '://' + options.host + (options.port ? ':' + options.port : '') + options.requestPrefix + options.path;
 
   if (opts.headers) {
     options.headers = opts.headers;
-    options.headers['X-USERID'] = opts.userId || opts.req.session.userId || '';
+    options.headers['X-USERNAME'] = opts.username || req.session.usercode || '';
+    options.headers['x-forwarded-for'] = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   } else {
     options.headers = {
       'content-type': opts.contentType || 'application/json',
-      'X-USERID': opts.userId || opts.req.session.userId || ''
+      'X-USERNAME': opts.username || req.session.usercode || '',
+      'X-DATA': opts.database || req.session.database || '',
+      'X-LOCALE': opts.lang || req.session.lang || 'zh',
+      'x-forwarded-for': req.headers['x-forwarded-for'] || req.connection.remoteAddress
     };
   }
 
@@ -46,12 +54,12 @@ function doRequest(opts, callback, reject) {
       });
     }
 
-    props.forEach(function (prop) {
+    props.forEach(function(prop) {
       if (opts.files[prop].name) {
-        var filename = opts.files[prop].name;
+        var filename = urlencode(opts.files[prop].name);
         var obj = {
           'content-type': opts.files[prop].type,
-          'content-disposition': 'form-data; name=' + prop + '; filename=' + filename,
+          'content-disposition': 'attachment; filename=' + filename,
           'body': fs.createReadStream(opts.files[prop].path)
         };
 
@@ -63,7 +71,7 @@ function doRequest(opts, callback, reject) {
       uri: encodeURI(url),
       method: options.method,
       headers: {
-        'X-USERID': options.headers['X-USERID']
+        'X-USERNAME': options.headers['X-USERNAME']
       },
       multipart: multipart
     };
@@ -71,9 +79,9 @@ function doRequest(opts, callback, reject) {
     if (opts.res) {
 
       request(multipartOptions)
-        .on('error', function (err) {
-          err.publish();
+        .on('error', function(err) {
           reject && reject(err);
+          err.publish();
           return opts.res.send({
             success: false,
             message: '后端服务连接错误！'
@@ -104,9 +112,9 @@ function doRequest(opts, callback, reject) {
     if (opts.res) {
 
       request(normalOptions)
-        .on('error', function (err) {
-          err.publish();
+        .on('error', function(err) {
           reject && reject(err);
+          err.publish();
           return opts.res.send({
             success: false,
             message: '后端服务连接错误！'
@@ -130,7 +138,7 @@ function createResponseObj(res, callback) {
 
 function createResponseHandle(callback, reject) {
 
-  return function (err, res, body) {
+  return function(err, res, body) {
 
     if (err) {
       err.publish();
@@ -153,7 +161,6 @@ function createResponseHandle(callback, reject) {
     }
 
     if (body) {
-
       try {
         body = typeof body === 'string' ? JSON.parse(body) : body;
       } catch (e) {
@@ -162,10 +169,8 @@ function createResponseHandle(callback, reject) {
         body.result = temp;
       }
 
-
       body.success = (res && res.statusCode <= 299) ? true : false;
     } else {
-
       body = {};
       body.success = (res && res.statusCode <= 299) ? true : false;
     }

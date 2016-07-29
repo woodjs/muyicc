@@ -1,11 +1,11 @@
 "use strict";
 let util = require('util');
-let SuperModel = require('../common/SuperModel');
+let BaseModel = require('../common/BaseModel');
 
-util.inherits(ArticleModel, SuperModel);
+util.inherits(ArticleModel, BaseModel);
 
 function ArticleModel(opts) {
-   SuperModel.call(this, opts);
+   BaseModel.call(this, opts);
 }
 
 module.exports = ArticleModel;

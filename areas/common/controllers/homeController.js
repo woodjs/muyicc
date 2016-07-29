@@ -1,6 +1,6 @@
 var gu = require('guthrie-js');
-var superController = require('../../../common/superController');
-var homeController = new gu.controller.inherit(superController);
+var baseController = require('../../../common/baseController');
+var homeController = new gu.controller.inherit(baseController);
 
 homeController.actions = {
   index: {
