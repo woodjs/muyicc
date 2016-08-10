@@ -1,6 +1,7 @@
 @import "./core/base";
 @import "./core/reset";
 @import "./core/config";
+@import "./component/folded_corner";
 
 body{
  font-size:14px;
@@ -62,4 +63,11 @@ a{
    font-size:14px;
   }
  }
+}
+
+.test-folded-corner{
+ width: 200px;
+ height: 100px;
+ background:#58a;
+ @include folded-corner(#58a, 2em, 40deg);
 }

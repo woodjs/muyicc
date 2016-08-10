@@ -80,4 +80,27 @@ a:hover {
   font-size: 14px;
 }
 
+.test-folded-corner {
+  width: 200px;
+  height: 100px;
+  background: #58a;
+  position: relative;
+  background: #58a;
+  background: linear-gradient(-140deg, transparent 2em, #58a 0);
+  border-radius: .5em;
+}
+.test-folded-corner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(to left bottom, transparent 50%, rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.4)) 100% 0 no-repeat;
+  width: 2.61081em;
+  height: 3.11145em;
+  transform: translateY(-0.50063em) rotate(-10deg);
+  transform-origin: bottom right;
+  border-bottom-left-radius: inherit;
+  box-shadow: -0.2em 0.2em 0.3em -0.1em rgba(0, 0, 0, 0.2);
+}
+
 /*# sourceMappingURL=frame.css.map */
