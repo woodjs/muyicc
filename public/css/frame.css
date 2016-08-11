@@ -1,4 +1,4 @@
-.test-folded-corner {
+.test-folded-corner, .test-2 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

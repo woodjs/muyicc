@@ -71,3 +71,7 @@ a{
  @include folded-corner(#58a, 2em, 40deg);
  @extend  %textOverflowEllipsis;
 }
+
+.test-2{
+ @extend  %textOverflowEllipsis;
+}
